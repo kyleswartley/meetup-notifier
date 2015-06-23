@@ -1,21 +1,26 @@
 package com.chariotsolutions.intern.meetupnotifier.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Group {
-    private String join_mode;
+    @JsonProperty("join_mode")
+    private String joinMode;
     private double created;
     private String name;
-    private int group_lon;
+    @JsonProperty("group_lon")
+    private int groupLon;
     private int id;
     private String urlname;
-    private int group_lat;
+    @JsonProperty("group_lat")
+    private int groupLat;
     private String who;
 
-    public String getJoin_mode() {
-        return join_mode;
+    public String getJoinMode() {
+        return joinMode;
     }
 
-    public void setJoin_mode(String join_mode) {
-        this.join_mode = join_mode;
+    public void setJoinMode(String joinMode) {
+        this.joinMode = joinMode;
     }
 
     public double getCreated() {
@@ -34,12 +39,12 @@ public class Group {
         this.name = name;
     }
 
-    public int getGroup_lon() {
-        return group_lon;
+    public int getGroupLon() {
+        return groupLon;
     }
 
-    public void setGroup_lon(int group_lon) {
-        this.group_lon = group_lon;
+    public void setGroupLon(int groupLon) {
+        this.groupLon = groupLon;
     }
 
     public int getId() {
@@ -58,12 +63,12 @@ public class Group {
         this.urlname = urlname;
     }
 
-    public int getGroup_lat() {
-        return group_lat;
+    public int getGroupLat() {
+        return groupLat;
     }
 
-    public void setGroup_lat(int group_lat) {
-        this.group_lat = group_lat;
+    public void setGroupLat(int groupLat) {
+        this.groupLat = groupLat;
     }
 
     public String getWho() {
@@ -77,13 +82,13 @@ public class Group {
     @Override
     public String toString() {
         return "Group{" +
-                "join_mode='" + join_mode + '\'' +
+                "joinMode='" + joinMode + '\'' +
                 ", created=" + created +
                 ", name='" + name + '\'' +
-                ", group_lon=" + group_lon +
+                ", groupLon=" + groupLon +
                 ", id=" + id +
                 ", urlname='" + urlname + '\'' +
-                ", group_lat=" + group_lat +
+                ", groupLat=" + groupLat +
                 ", who='" + who + '\'' +
                 '}';
     }

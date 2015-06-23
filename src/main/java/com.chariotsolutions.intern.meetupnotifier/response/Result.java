@@ -1,31 +1,50 @@
 package com.chariotsolutions.intern.meetupnotifier.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Result {
-    private int utc_offset;
+    @JsonProperty("utc_offset")
+    private int utcOffset;
     private Venue venue;
-    private int rsvp_limit;
+    @JsonProperty("rsvp_limit")
+    private int rsvpLimit;
     private int headcount;
     private String visibility;
-    private int waitlist_count;
+    @JsonProperty("waitlist_count")
+    private int waitlistCount;
     private double created;
-    private int maybe_rsvp_count;
+    @JsonProperty("maybe_rsvp_count")
+    private int maybeRsvpCount;
     private String description;
-    private String how_to_find_us;
-    private String event_url;
-    private int yes_rsvp_count;
+    @JsonProperty("how_to_find_us")
+    private String howToFindUs;
+    @JsonProperty("event_url")
+    private String eventUrl;
+    @JsonProperty("yes_rsvp_count")
+    private int yesRsvpCount;
     private String name;
     private String id;
     private double time;
+    private double duration = 1.08e7;
     private double updated;
     private Group group;
     private String status;
+    private String timezone;
 
-    public int getUtc_offset() {
-        return utc_offset;
+    public String getTimezone() {
+        return timezone;
     }
 
-    public void setUtc_offset(int utc_offset) {
-        this.utc_offset = utc_offset;
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
+    public int getUtcOffset() {
+        return utcOffset;
+    }
+
+    public void setUtcOffset(int utcOffset) {
+        this.utcOffset = utcOffset;
     }
 
     public Venue getVenue() {
@@ -36,12 +55,12 @@ public class Result {
         this.venue = venue;
     }
 
-    public int getRsvp_limit() {
-        return rsvp_limit;
+    public int getRsvpLimit() {
+        return rsvpLimit;
     }
 
-    public void setRsvp_limit(int rsvp_limit) {
-        this.rsvp_limit = rsvp_limit;
+    public void setRsvpLimit(int rsvpLimit) {
+        this.rsvpLimit = rsvpLimit;
     }
 
     public int getHeadcount() {
@@ -60,12 +79,12 @@ public class Result {
         this.visibility = visibility;
     }
 
-    public int getWaitlist_count() {
-        return waitlist_count;
+    public int getWaitlistCount() {
+        return waitlistCount;
     }
 
-    public void setWaitlist_count(int waitlist_count) {
-        this.waitlist_count = waitlist_count;
+    public void setWaitlistCount(int waitlistCount) {
+        this.waitlistCount = waitlistCount;
     }
 
     public double getCreated() {
@@ -76,12 +95,12 @@ public class Result {
         this.created = created;
     }
 
-    public int getMaybe_rsvp_count() {
-        return maybe_rsvp_count;
+    public int getMaybeRsvpCount() {
+        return maybeRsvpCount;
     }
 
-    public void setMaybe_rsvp_count(int maybe_rsvp_count) {
-        this.maybe_rsvp_count = maybe_rsvp_count;
+    public void setMaybeRsvpCount(int maybeRsvpCount) {
+        this.maybeRsvpCount = maybeRsvpCount;
     }
 
     public String getDescription() {
@@ -92,28 +111,28 @@ public class Result {
         this.description = description;
     }
 
-    public String getHow_to_find_us() {
-        return how_to_find_us;
+    public String getHowToFindUs() {
+        return howToFindUs;
     }
 
-    public void setHow_to_find_us(String how_to_find_us) {
-        this.how_to_find_us = how_to_find_us;
+    public void setHowToFindUs(String howToFindUs) {
+        this.howToFindUs = howToFindUs;
     }
 
-    public String getEvent_url() {
-        return event_url;
+    public String getEventUrl() {
+        return eventUrl;
     }
 
-    public void setEvent_url(String event_url) {
-        this.event_url = event_url;
+    public void setEventUrl(String eventUrl) {
+        this.eventUrl = eventUrl;
     }
 
-    public int getYes_rsvp_count() {
-        return yes_rsvp_count;
+    public int getYesRsvpCount() {
+        return yesRsvpCount;
     }
 
-    public void setYes_rsvp_count(int yes_rsvp_count) {
-        this.yes_rsvp_count = yes_rsvp_count;
+    public void setYesRsvpCount(int yesRsvpCount) {
+        this.yesRsvpCount = yesRsvpCount;
     }
 
     public String getName() {
@@ -138,6 +157,14 @@ public class Result {
 
     public void setTime(double time) {
         this.time = time;
+    }
+
+    public double getDuration() {
+        return duration;
+    }
+
+    public void setDuration(double duration) {
+        this.duration = duration;
     }
 
     public double getUpdated() {
@@ -167,21 +194,22 @@ public class Result {
     @Override
     public String toString() {
         return "Result{" +
-                "utc_offset=" + utc_offset +
+                "utcOffset=" + utcOffset +
                 ", venue=" + venue +
-                ", rsvp_limit=" + rsvp_limit +
+                ", rsvpLimit=" + rsvpLimit +
                 ", headcount=" + headcount +
                 ", visibility='" + visibility + '\'' +
-                ", waitlist_count=" + waitlist_count +
+                ", waitlistCount=" + waitlistCount +
                 ", created=" + created +
-                ", maybe_rsvp_count=" + maybe_rsvp_count +
+                ", maybeRsvpCount=" + maybeRsvpCount +
                 ", description='" + description + '\'' +
-                ", how_to_find_us='" + how_to_find_us + '\'' +
-                ", event_url='" + event_url + '\'' +
-                ", yes_rsvp_count=" + yes_rsvp_count +
+                ", howToFindUs='" + howToFindUs + '\'' +
+                ", eventUrl='" + eventUrl + '\'' +
+                ", yesRsvpCount=" + yesRsvpCount +
                 ", name='" + name + '\'' +
                 ", id='" + id + '\'' +
                 ", time=" + time +
+                ", duration=" + duration +
                 ", updated=" + updated +
                 ", group=" + group +
                 ", status='" + status + '\'' +

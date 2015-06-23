@@ -1,31 +1,47 @@
 package com.chariotsolutions.intern.meetupnotifier.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Venue {
-    private String zip ;
-    private String country;
+    @JsonProperty("address_1")
+    private String address1;
+    @JsonProperty("address_2")
+    private String address2 = "";
+    @JsonProperty("address_3")
+    private String address3 = "";
     private String city;
-    private String address_1;
-    private String name;
-    private int lon;
-    private int id;
     private String state;
+    private String country;
+    private int id;
     private int lat;
+    private int lon;
+    private String name;
     private boolean repinned;
+    private String phone;
+    private String zip;
 
-    public String getZip() {
-        return zip;
+    public String getAddress1() {
+        return address1;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setAddress1(String address1) {
+        this.address1 = address1;
     }
 
-    public String getCountry() {
-        return country;
+    public String getAddress2() {
+        return address2;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
+
+    public String getAddress3() {
+        return address3;
+    }
+
+    public void setAddress3(String address3) {
+        this.address3 = address3;
     }
 
     public String getCity() {
@@ -36,28 +52,20 @@ public class Venue {
         this.city = city;
     }
 
-    public String getAddress_1() {
-        return address_1;
+    public String getState() {
+        return state;
     }
 
-    public void setAddress_1(String address_1) {
-        this.address_1 = address_1;
+    public void setState(String state) {
+        this.state = state;
     }
 
-    public String getName() {
-        return name;
+    public String getCountry() {
+        return country;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getLon() {
-        return lon;
-    }
-
-    public void setLon(int lon) {
-        this.lon = lon;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public int getId() {
@@ -68,20 +76,28 @@ public class Venue {
         this.id = id;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
     public int getLat() {
         return lat;
     }
 
     public void setLat(int lat) {
         this.lat = lat;
+    }
+
+    public int getLon() {
+        return lon;
+    }
+
+    public void setLon(int lon) {
+        this.lon = lon;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public boolean isRepinned() {
@@ -92,19 +108,19 @@ public class Venue {
         this.repinned = repinned;
     }
 
-    @Override
-    public String toString() {
-        return "Venue{" +
-                "zip='" + zip + '\'' +
-                ", country='" + country + '\'' +
-                ", city='" + city + '\'' +
-                ", address_1='" + address_1 + '\'' +
-                ", name='" + name + '\'' +
-                ", lon=" + lon +
-                ", id=" + id +
-                ", state='" + state + '\'' +
-                ", lat=" + lat +
-                ", repinned=" + repinned +
-                '}';
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
     }
 }
