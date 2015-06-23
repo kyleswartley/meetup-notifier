@@ -1,4 +1,4 @@
-package com.chariotsolutions.intern.meetupnotifier.response;
+package com.chariotsolutions.meetupnotifier.meetup.api.messages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

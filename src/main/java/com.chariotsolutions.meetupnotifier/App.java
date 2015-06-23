@@ -1,7 +1,7 @@
-package com.chariotsolutions.intern.meetupnotifier;
+package com.chariotsolutions.meetupnotifier;
 
 
-import com.chariotsolutions.intern.meetupnotifier.response.Results;
+import com.chariotsolutions.meetupnotifier.meetup.api.messages.Results;
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
