@@ -1,106 +1,29 @@
 package com.chariotsolutions.intern.meetupnotifier.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Result {
-    @JsonProperty("utc_offset")
-    private int utcOffset;
-    private Venue venue;
-    @JsonProperty("rsvp_limit")
-    private int rsvpLimit;
-    private int headcount;
-    private String visibility;
-    @JsonProperty("waitlist_count")
-    private int waitlistCount;
-    private double created;
-    @JsonProperty("maybe_rsvp_count")
-    private int maybeRsvpCount;
+    private String name;
     private String description;
-    @JsonProperty("how_to_find_us")
-    private String howToFindUs;
     @JsonProperty("event_url")
     private String eventUrl;
-    @JsonProperty("yes_rsvp_count")
-    private int yesRsvpCount;
-    private String name;
-    private String id;
+    private Venue venue;
+    @JsonProperty("how_to_find_us")
+    private String howToFindUs;
     private double time;
-    private double duration = 1.08e7;
-    private double updated;
-    private Group group;
-    private String status;
     private String timezone;
+    private double duration = 1.08e7;
+    private String id;
+    private Group group;
 
-    public String getTimezone() {
-        return timezone;
+    public String getName() {
+        return name;
     }
 
-    public void setTimezone(String timezone) {
-        this.timezone = timezone;
-    }
-
-    public int getUtcOffset() {
-        return utcOffset;
-    }
-
-    public void setUtcOffset(int utcOffset) {
-        this.utcOffset = utcOffset;
-    }
-
-    public Venue getVenue() {
-        return venue;
-    }
-
-    public void setVenue(Venue venue) {
-        this.venue = venue;
-    }
-
-    public int getRsvpLimit() {
-        return rsvpLimit;
-    }
-
-    public void setRsvpLimit(int rsvpLimit) {
-        this.rsvpLimit = rsvpLimit;
-    }
-
-    public int getHeadcount() {
-        return headcount;
-    }
-
-    public void setHeadcount(int headcount) {
-        this.headcount = headcount;
-    }
-
-    public String getVisibility() {
-        return visibility;
-    }
-
-    public void setVisibility(String visibility) {
-        this.visibility = visibility;
-    }
-
-    public int getWaitlistCount() {
-        return waitlistCount;
-    }
-
-    public void setWaitlistCount(int waitlistCount) {
-        this.waitlistCount = waitlistCount;
-    }
-
-    public double getCreated() {
-        return created;
-    }
-
-    public void setCreated(double created) {
-        this.created = created;
-    }
-
-    public int getMaybeRsvpCount() {
-        return maybeRsvpCount;
-    }
-
-    public void setMaybeRsvpCount(int maybeRsvpCount) {
-        this.maybeRsvpCount = maybeRsvpCount;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -111,14 +34,6 @@ public class Result {
         this.description = description;
     }
 
-    public String getHowToFindUs() {
-        return howToFindUs;
-    }
-
-    public void setHowToFindUs(String howToFindUs) {
-        this.howToFindUs = howToFindUs;
-    }
-
     public String getEventUrl() {
         return eventUrl;
     }
@@ -127,28 +42,20 @@ public class Result {
         this.eventUrl = eventUrl;
     }
 
-    public int getYesRsvpCount() {
-        return yesRsvpCount;
+    public Venue getVenue() {
+        return venue;
     }
 
-    public void setYesRsvpCount(int yesRsvpCount) {
-        this.yesRsvpCount = yesRsvpCount;
+    public void setVenue(Venue venue) {
+        this.venue = venue;
     }
 
-    public String getName() {
-        return name;
+    public String getHowToFindUs() {
+        return howToFindUs;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setHowToFindUs(String howToFindUs) {
+        this.howToFindUs = howToFindUs;
     }
 
     public double getTime() {
@@ -159,6 +66,14 @@ public class Result {
         this.time = time;
     }
 
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
+    }
+
     public double getDuration() {
         return duration;
     }
@@ -167,12 +82,12 @@ public class Result {
         this.duration = duration;
     }
 
-    public double getUpdated() {
-        return updated;
+    public String getId() {
+        return id;
     }
 
-    public void setUpdated(double updated) {
-        this.updated = updated;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Group getGroup() {
@@ -183,36 +98,19 @@ public class Result {
         this.group = group;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
         return "Result{" +
-                "utcOffset=" + utcOffset +
-                ", venue=" + venue +
-                ", rsvpLimit=" + rsvpLimit +
-                ", headcount=" + headcount +
-                ", visibility='" + visibility + '\'' +
-                ", waitlistCount=" + waitlistCount +
-                ", created=" + created +
-                ", maybeRsvpCount=" + maybeRsvpCount +
+                "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", howToFindUs='" + howToFindUs + '\'' +
                 ", eventUrl='" + eventUrl + '\'' +
-                ", yesRsvpCount=" + yesRsvpCount +
-                ", name='" + name + '\'' +
-                ", id='" + id + '\'' +
+                ", venue=" + venue +
+                ", howToFindUs='" + howToFindUs + '\'' +
                 ", time=" + time +
+                ", timezone='" + timezone + '\'' +
                 ", duration=" + duration +
-                ", updated=" + updated +
+                ", id='" + id + '\'' +
                 ", group=" + group +
-                ", status='" + status + '\'' +
                 '}';
     }
 }

@@ -8,11 +8,11 @@ public class Group {
     private double created;
     private String name;
     @JsonProperty("group_lon")
-    private int groupLon;
+    private double groupLon;
     private int id;
     private String urlname;
     @JsonProperty("group_lat")
-    private int groupLat;
+    private double groupLat;
     private String who;
 
     public String getJoinMode() {
@@ -39,11 +39,11 @@ public class Group {
         this.name = name;
     }
 
-    public int getGroupLon() {
+    public double getGroupLon() {
         return groupLon;
     }
 
-    public void setGroupLon(int groupLon) {
+    public void setGroupLon(double groupLon) {
         this.groupLon = groupLon;
     }
 
@@ -63,11 +63,11 @@ public class Group {
         this.urlname = urlname;
     }
 
-    public int getGroupLat() {
+    public double getGroupLat() {
         return groupLat;
     }
 
-    public void setGroupLat(int groupLat) {
+    public void setGroupLat(double groupLat) {
         this.groupLat = groupLat;
     }
 

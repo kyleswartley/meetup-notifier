@@ -6,15 +6,15 @@ public class Venue {
     @JsonProperty("address_1")
     private String address1;
     @JsonProperty("address_2")
-    private String address2 = "";
+    private String address2;
     @JsonProperty("address_3")
-    private String address3 = "";
+    private String address3;
     private String city;
     private String state;
     private String country;
     private int id;
-    private int lat;
-    private int lon;
+    private double lat;
+    private double lon;
     private String name;
     private boolean repinned;
     private String phone;
@@ -76,19 +76,19 @@ public class Venue {
         this.id = id;
     }
 
-    public int getLat() {
+    public double getLat() {
         return lat;
     }
 
-    public void setLat(int lat) {
+    public void setLat(double lat) {
         this.lat = lat;
     }
 
-    public int getLon() {
+    public double getLon() {
         return lon;
     }
 
-    public void setLon(int lon) {
+    public void setLon(double lon) {
         this.lon = lon;
     }
 
