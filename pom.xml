@@ -6,7 +6,7 @@
 
   <groupId>com.chariotsolutions</groupId>
   <artifactId>meetup-notifier</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1-SNAPSHOT</version>
 
   <dependencies>
     <dependency>
@@ -59,7 +59,7 @@
           <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>6.7</version>
+            <version>${checkstyle.version}</version>
           </dependency>
         </dependencies>
       </plugin>
@@ -75,6 +75,7 @@
     <google-api-services-calendar.version>v3-rev128-1.20.0</google-api-services-calendar.version>
     <maven-checkstyle-plugin.config>checkstyle/google_checks.xml</maven-checkstyle-plugin.config>
     <maven-checkstyle-plugin.version>2.15</maven-checkstyle-plugin.version>
+    <checkstyle.version>6.7</checkstyle.version>
   </properties>
 
 </project>
