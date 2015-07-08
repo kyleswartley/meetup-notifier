@@ -4,11 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Venue {
   @JsonProperty("address_1")
-  private String address1;
+  private String address1 = "";
   @JsonProperty("address_2")
-  private String address2;
+  private String address2 = "";
   @JsonProperty("address_3")
-  private String address3;
+  private String address3 = "";
   private String city;
   private String state;
   private String country;
