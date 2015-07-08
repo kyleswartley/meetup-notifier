@@ -9,7 +9,7 @@ public class Result {
   private String description;
   @JsonProperty("event_url")
   private String eventUrl;
-  private Venue venue;
+  private Venue venue = new Venue();
   @JsonProperty("how_to_find_us")
   private String howToFindUs;
   private long time;
