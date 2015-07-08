@@ -1,6 +1,7 @@
 package com.chariotsolutions.meetupnotifier.meetup.api.messages;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.commons.lang3.StringUtils;
 
 public class Venue {
   @JsonProperty("address_1")
@@ -122,5 +123,10 @@ public class Venue {
 
   public void setZip(String zip) {
     this.zip = zip;
+  }
+
+  @Override
+  public String toString() {
+    return StringUtils.join(new String[]{address1, city, state, zip}, " ");
   }
 }
