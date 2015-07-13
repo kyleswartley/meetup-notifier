@@ -1,5 +1,6 @@
 package com.chariotsolutions.meetupnotifier;
 
+import com.chariotsolutions.meetupnotifier.meetup.api.MeetupQueryExecutor;
 import com.chariotsolutions.meetupnotifier.meetup.api.messages.Result;
 import com.google.api.services.calendar.model.Event;
 
@@ -19,7 +20,10 @@ public class App {
    * @param args Commandline arguments
    */
   public static void main(String[] args) throws IOException, GeneralSecurityException {
-    Results resultsObject = MeetupQuery.fetchMeetups();
+    MeetupQueryExecutor.setApiKey("NotTheRealApiKey");
+    Results resultsObject = MeetupQueryExecutor
+        .executeQuery(new MeetupQuery("phillypug"));
+
     com.google.api.services.calendar.Calendar cal = CalendarSample.getCalendarService();
 
     ArrayList<Event> events = new ArrayList<Event>();
