@@ -1,18 +1,17 @@
 package com.chariotsolutions.meetupnotifier;
 
 import com.chariotsolutions.meetupnotifier.meetup.api.MeetupQueryExecutor;
-import com.chariotsolutions.meetupnotifier.meetup.api.messages.Result;
+import com.chariotsolutions.meetupnotifier.meetup.api.GoogleConverter;
 import com.google.api.services.calendar.model.Event;
 
 import com.chariotsolutions.meetupnotifier.google.CalendarSample;
-import com.chariotsolutions.meetupnotifier.meetup.api.MeetupGoogleEventTranslator;
 import com.chariotsolutions.meetupnotifier.meetup.api.MeetupQuery;
 import com.chariotsolutions.meetupnotifier.meetup.api.messages.Results;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class App {
 
@@ -21,16 +20,15 @@ public class App {
    * @param args Commandline arguments
    */
   public static void main(String[] args) throws IOException, GeneralSecurityException {
-    Results resultsObject = new MeetupQueryExecutor("Not the api key").executeQuery(new MeetupQuery("phillypug"));
+    Results resultsObject = new MeetupQueryExecutor("591a1341d1b5e50587c3b485afa34").executeQuery(new MeetupQuery("phillypug"));
 
     com.google.api.services.calendar.Calendar cal = CalendarSample.getCalendarService();
+    GoogleConverter googleConverter = new GoogleConverter();
 
-    List<Event> events = new ArrayList<Event>();
-
-    for (Result result : resultsObject.getResults()) {
-      events.add(MeetupGoogleEventTranslator.translateMeetupEvent(result));
-    }
-
+    List<Event> events =
+        resultsObject.getResults().stream()
+            .map(googleConverter::convertTo)
+            .collect(Collectors.toList());
     for (Event event : events) {
       cal.events().insert("primary", event).execute();
     }

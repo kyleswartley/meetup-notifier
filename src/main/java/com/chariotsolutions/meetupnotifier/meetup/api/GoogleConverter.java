@@ -6,22 +6,17 @@ import com.google.api.services.calendar.model.EventDateTime;
 
 import com.chariotsolutions.meetupnotifier.meetup.api.messages.Result;
 
-
 import java.util.Date;
 
-public class MeetupGoogleEventTranslator {
+public class GoogleConverter implements ResultConverter<Event> {
 
-  /**
-   * Creates a Google Calendar Event from a Result.
-   * @param result hi
-   * @return The generated event.
-   */
-  public static Event translateMeetupEvent(Result result) {
+  @Override
+  public Event convertTo(Result sourceResult) {
     Event evt = new Event()
-        .setSummary(result.getName())
-        .setLocation(result.getVenue().toString())
-        .setDescription(result.getDescription());
-    setTimes(evt, result);
+        .setSummary(sourceResult.getName())
+        .setLocation(sourceResult.getVenue().toString())
+        .setDescription(sourceResult.getDescription());
+    setTimes(evt, sourceResult);
     return evt;
   }
 
