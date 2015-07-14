@@ -13,9 +13,13 @@ import java.io.IOException;
 
 public class MeetupQueryExecutor {
 
-  private static String apiKey;
+  private String apiKey;
 
-  public static Results executeQuery(MeetupQuery meetupQuery) throws IOException {
+  public MeetupQueryExecutor(String apiKey) {
+    this.apiKey = apiKey;
+  }
+
+  public Results executeQuery(MeetupQuery meetupQuery) throws IOException {
     String queryString = meetupQuery.buildQueryUrl(apiKey);
 
     CloseableHttpClient client = HttpClientBuilder.create().build();
@@ -27,13 +31,6 @@ public class MeetupQueryExecutor {
     JsonFactory jsonFactory = new JsonFactory();
     JsonParser jsonParser = jsonFactory.createParser(response.getEntity().getContent());
 
-    Results resultsObject = mapper.readValue(jsonParser, Results.class);
-
-    return resultsObject;
-  }
-
-
-  public static void setApiKey(String apiKey) {
-    MeetupQueryExecutor.apiKey = apiKey;
+    return mapper.readValue(jsonParser, Results.class);
   }
 }

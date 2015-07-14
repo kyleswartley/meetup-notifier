@@ -12,6 +12,7 @@ import com.chariotsolutions.meetupnotifier.meetup.api.messages.Results;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class App {
 
@@ -20,13 +21,11 @@ public class App {
    * @param args Commandline arguments
    */
   public static void main(String[] args) throws IOException, GeneralSecurityException {
-    MeetupQueryExecutor.setApiKey("NotTheRealApiKey");
-    Results resultsObject = MeetupQueryExecutor
-        .executeQuery(new MeetupQuery("phillypug"));
+    Results resultsObject = new MeetupQueryExecutor("Not the api key").executeQuery(new MeetupQuery("phillypug"));
 
     com.google.api.services.calendar.Calendar cal = CalendarSample.getCalendarService();
 
-    ArrayList<Event> events = new ArrayList<Event>();
+    List<Event> events = new ArrayList<Event>();
 
     for (Result result : resultsObject.getResults()) {
       events.add(MeetupGoogleEventTranslator.translateMeetupEvent(result));
