@@ -36,7 +36,7 @@ public class AppBeanImpl {
 
       for (Event googleEvent : events) {
         App.cal.events().insert("primary", googleEvent).execute();
-        logger.warn("Oh no I added a thing to the calendar!");
+        logger.debug("An event was added to the calendar successfully");
       }
     }
   }
