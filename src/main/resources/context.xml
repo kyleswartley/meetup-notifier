@@ -14,7 +14,7 @@
   <context:property-placeholder location="classpath:meetupGroups.properties"/>
 
   <task:scheduled-tasks>
-    <task:scheduled ref="appBeanImpl" method="run"
+    <task:scheduled ref="meetupNotifierImpl" method="run"
                     fixed-rate="${checkschedule.fixed-rate}"
                     initial-delay="${checkschedule.initial-delay}"/>
   </task:scheduled-tasks>

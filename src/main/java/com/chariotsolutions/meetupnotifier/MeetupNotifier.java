@@ -1,5 +1,5 @@
 package com.chariotsolutions.meetupnotifier;
 
-public interface AppBean {
+public interface MeetupNotifier {
 
 }

@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
 
 @Component
 @EnableScheduling
-public class AppBeanImpl {
+public class MeetupNotifierImpl {
 
-  private static final Logger logger = LoggerFactory.getLogger(AppBeanImpl.class);
+  private static final Logger logger = LoggerFactory.getLogger(MeetupNotifierImpl.class);
 
   private String[] groups;
 
