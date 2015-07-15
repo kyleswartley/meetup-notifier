@@ -17,6 +17,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @EnableScheduling
@@ -31,8 +33,11 @@ public class AppBeanImpl {
     for (String meetupGroupName : groups) {
       Results results = new MeetupQueryExecutor().executeQuery(new MeetupQuery(meetupGroupName));
 
-      for (Result meetupEvent : results.getResults()) {
-        Event googleEvent = new GoogleConverter().convertTo(meetupEvent);
+      List<Event> events = results.getResults().stream()
+          .map(new GoogleConverter()::convertTo)
+          .collect(Collectors.toList());
+
+      for (Event googleEvent : events) {
         App.cal.events().insert("primary", googleEvent).execute();
         logger.warn("Oh no I added a thing to the calendar!");
       }
