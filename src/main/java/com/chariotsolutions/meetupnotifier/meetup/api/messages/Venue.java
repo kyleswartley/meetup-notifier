@@ -127,11 +127,6 @@ public class Venue {
 
   @Override
   public String toString() {
-    String result = StringUtils.join(new String[]{address1, city, state, zip}, " ").trim();
-    if (result.isEmpty()) {
-      return "Location private or not set, view the group on meetup.com for details";
-    } else {
-      return result;
-    }
+    return StringUtils.join(new String[]{address1, city, state, zip}, " ").trim();
   }
 }
