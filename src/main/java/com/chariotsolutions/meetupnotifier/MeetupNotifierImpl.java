@@ -26,7 +26,7 @@ public class MeetupNotifierImpl {
 
   private String[] groups;
 
-  public void run() throws IOException {
+  public void queryAndNotify() throws IOException {
     for (String meetupGroupName : groups) {
       Results results = new MeetupQueryExecutor().executeQuery(new MeetupQuery(meetupGroupName));
 
