@@ -8,25 +8,21 @@ import com.chariotsolutions.meetupnotifier.meetup.api.MeetupQuery;
 import com.chariotsolutions.meetupnotifier.meetup.api.MeetupQueryExecutor;
 import com.chariotsolutions.meetupnotifier.meetup.api.messages.Result;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.sql.DataSource;
 
 @Component
 @EnableScheduling
 public class MeetupNotifierImpl {
 
-  private static final Logger logger = LoggerFactory.getLogger(MeetupNotifierImpl.class);
   @Autowired
   DataSource ds;
 
@@ -35,27 +31,29 @@ public class MeetupNotifierImpl {
   public void queryAndNotify() throws IOException {
     for (String meetupGroupName : groups) {
       JdbcTemplate template = new JdbcTemplate(ds);
-      String metupInCalendarQuery = "SELECT count(*) from id_table where meetupID=?";
+      String metupInCalendarQuery = "SELECT * from id_table where meetupID=?";
 
       List<Result> results = new MeetupQueryExecutor()
-          .executeQuery(new MeetupQuery(meetupGroupName)).getResults().stream()
-          .filter(t -> template.queryForObject(metupInCalendarQuery, Integer.class, t.getId()) == 0)
-          .collect(Collectors.toList());
+          .executeQuery(new MeetupQuery(meetupGroupName)).getResults();
 
-      List<Event> events = results.stream()
-          .map(new GoogleConverter()::convertTo)
-          .collect(Collectors.toList());
+      for (Result result : results) {
+        Event gev = new GoogleConverter().convertTo(result);
+        List<EventIdRow> tab = template.query(metupInCalendarQuery, eventMapper, result.getId());
 
-      Iterator<Result> meetupIter = results.iterator();
-
-      for (Event googleEvent : events) {
-        Event insertedEvent = App.cal.events().insert("primary", googleEvent).execute();
-        template.update("INSERT INTO id_table VALUES (?, ?)",
-                        insertedEvent.getId(), meetupIter.next().getId());
-        logger.debug("An event was added to the calendar successfully");
+        if (tab.size() == 0) {
+          Event insertedEvent = App.cal.events().insert("primary", gev).execute();
+          template.update("INSERT INTO id_table VALUES (?, ?)",
+              insertedEvent.getId(), result.getId());
+        } else {
+          App.cal.events().update("primary", tab.get(0).getGoogleId(), gev).execute();
+        }
       }
     }
   }
+
+  RowMapper<EventIdRow> eventMapper = (resultSet, ii) -> new EventIdRow(
+      resultSet.getString("googleID"),
+      resultSet.getString("meetupID"));
 
   @Value("${meetup.groups}")
   public void setGroups(String[] groups) {
