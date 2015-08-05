@@ -31,18 +31,18 @@ public class MeetupNotifierImpl {
   public void queryAndNotify() throws IOException {
     for (String meetupGroupName : groups) {
       JdbcTemplate template = new JdbcTemplate(ds);
-      String metupInCalendarQuery = "SELECT * from id_table where meetupID=?";
+      String metupInCalendarQuery = "SELECT * from calendar_event where meetupID=?";
 
       List<Result> results = new MeetupQueryExecutor()
           .executeQuery(new MeetupQuery(meetupGroupName)).getResults();
 
       for (Result result : results) {
         Event gev = new GoogleConverter().convertTo(result);
-        List<EventIdRow> tab = template.query(metupInCalendarQuery, eventMapper, result.getId());
+        List<CalendarEvent> tab = template.query(metupInCalendarQuery, eventMapper, result.getId());
 
         if (tab.size() == 0) {
           Event insertedEvent = App.cal.events().insert("primary", gev).execute();
-          template.update("INSERT INTO id_table VALUES (?, ?)",
+          template.update("INSERT INTO calendar_event VALUES (?, ?)",
               insertedEvent.getId(), result.getId());
         } else {
           App.cal.events().update("primary", tab.get(0).getGoogleId(), gev).execute();
@@ -51,7 +51,7 @@ public class MeetupNotifierImpl {
     }
   }
 
-  RowMapper<EventIdRow> eventMapper = (resultSet, ii) -> new EventIdRow(
+  RowMapper<CalendarEvent> eventMapper = (resultSet, ii) -> new CalendarEvent(
       resultSet.getString("googleID"),
       resultSet.getString("meetupID"));
 
