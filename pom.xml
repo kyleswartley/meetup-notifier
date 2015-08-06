@@ -76,6 +76,11 @@
       <artifactId>hsqldb</artifactId>
       <version>${hsqldb.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
 
 
   </dependencies>
@@ -154,6 +159,7 @@
     <exec-maven-plugin.version>1.2.1</exec-maven-plugin.version>
     <spring-jdbc.version>4.1.7.RELEASE</spring-jdbc.version>
     <hsqldb.version>2.3.3</hsqldb.version>
+    <guava.version>18.0</guava.version>
   </properties>
 
 </project>
