@@ -11,19 +11,19 @@ import java.util.List;
 public class CalendarEventDao {
 
   @Autowired
-  JdbcTemplate template;
+  private JdbcTemplate template;
 
-  void insertRow(String googleId, String meetupId) {
+  void insertEvent(String googleId, String meetupId) {
     template.update(
         "INSERT INTO calendar_event VALUES (?, ?)", googleId, meetupId);
   }
 
-  List<CalendarEvent> getRowsByMeetupId(String meetupId) {
+  List<CalendarEvent> findEventsByMeetupId(String meetupId) {
     return template.query(
         "SELECT * from calendar_event where meetupID=?", eventMapper, meetupId);
   }
 
-  RowMapper<CalendarEvent> eventMapper = (resultSet, ii) -> new CalendarEvent(
+  private RowMapper<CalendarEvent> eventMapper = (resultSet, ii) -> new CalendarEvent(
       resultSet.getString("googleID"),
       resultSet.getString("meetupID"));
 

@@ -32,11 +32,11 @@ public class MeetupNotifierImpl {
 
       for (Result result : results) {
         Event gev = new GoogleConverter().convertTo(result);
-        List<CalendarEvent> tab = dao.getRowsByMeetupId(result.getId());
+        List<CalendarEvent> tab = dao.findEventsByMeetupId(result.getId());
 
         if (tab.size() == 0) {
           Event insertedEvent = App.cal.events().insert("primary", gev).execute();
-          dao.insertRow(insertedEvent.getId(), result.getId());
+          dao.insertEvent(insertedEvent.getId(), result.getId());
         } else {
           App.cal.events().update("primary", tab.get(0).getGoogleId(), gev).execute();
         }
